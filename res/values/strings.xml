@@ -1,8 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <string name="app_name">SyncNote</string>
+    <string name="app_name">Notes</string>
+    
     <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
-
+    <string name="action_help">Help</string>
+    <string name="action_new">New</string>
+    
+    <string name="new_note_hint">Type a note</string>
+    <string name="sample_focused_note_text">that place looks good for lunch</string>
+	<string name="sample_date_and_time">11:43 am 01/10/2014</string>
+	<string name="sample_date">01/10/2014</string>
+	<string name="empty_string"></string>
+	
+	<string name="NoteAdded">Nota Agregada</string>
+	<string name="NoteAddedError">Error al agregar nota</string>
+	
 </resources>

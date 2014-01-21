@@ -16,5 +16,9 @@
     <style name="AppTheme" parent="AppBaseTheme">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
+    <color name="note_background">#FFFFFF</color>
+    <color name="main_background">#E2E2E2</color>
+    <color name="focused_note_buttons_background">#F7901E</color>
+    <color name="sample_note_highlight">#ccffcc</color>
 
 </resources>
