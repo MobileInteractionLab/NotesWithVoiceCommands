@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/activity_margin"
+    android:background="@drawable/bk_note"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/tvNewNoteDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:paddingBottom="8dp"
+        android:paddingRight="16dp"
+        android:paddingTop="8dp"
+        android:text="@string/sample_date_and_time"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <EditText
+        android:id="@+id/etNewNoteData"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:ems="10"
+        android:gravity="top"
+        android:hint="@string/new_note_hint"
+        android:inputType="textMultiLine|textCapSentences|textAutoCorrect" >
+
+        <requestFocus />
+    </EditText>
+
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/player_controls" />
+
+    <LinearLayout
+        android:id="@+id/llNewNoteColor"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/focused_note_buttons_background"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <ImageButton
+            android:id="@+id/ibMic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/microphone"
+            android:src="@drawable/ic_mic" />
+
+        <ImageButton
+            android:id="@+id/ibCamera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/camera"
+            android:src="@drawable/ic_camera" />
+
+        <ImageButton
+            android:id="@+id/ibMap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/map"
+            android:src="@drawable/ic_map" />
+
+        <ImageButton
+            android:id="@+id/ibChooser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/map"
+            android:src="@drawable/ic_map" />
+    </LinearLayout>
+</LinearLayout>

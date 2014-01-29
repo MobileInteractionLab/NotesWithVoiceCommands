@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.notes"
+    package="com.mobileinteractionlabs.notes"
     android:versionCode="1"
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="8"
-        android:targetSdkVersion="18" />
+        android:minSdkVersion="14"
+        android:targetSdkVersion="19" />
 
     <application
         android:allowBackup="true"
@@ -14,7 +14,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.example.notes.MainActivity"
+            android:name="com.mobileinteractionlabs.notes.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,9 +23,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.notes.NewNoteActivity"
+            android:name="com.mobileinteractionlabs.notes.NewNoteActivity"
             android:label="@string/app_name"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateVisible|adjustResize" >
+            
             <intent-filter>
                 <action android:name="android.intent.action.NEWNOTEACTIVITY" />
 

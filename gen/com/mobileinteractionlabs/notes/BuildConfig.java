@@ -1,5 +1,5 @@
 /** Automatically generated file. DO NOT MODIFY */
-package com.mobileinteractionlab.noteswithvoicecommands;
+package com.mobileinteractionlabs.notes;
 
 public final class BuildConfig {
     public final static boolean DEBUG = true;

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bk_note"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/tvFocusedDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:paddingBottom="8dp"
+        android:paddingRight="16dp"
+        android:paddingTop="8dp"
+        android:text="@string/sample_date_and_time"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2" >
+
+        <TextView
+            android:id="@+id/tvFocusedNote"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:paddingLeft="32dp"
+            android:paddingRight="32dp"
+            android:text="@string/sample_focused_note_text"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="40sp"
+            android:textStyle="bold" />
+    </ScrollView>
+
+    <SeekBar
+        android:id="@+id/seekBar1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/focused_note_buttons_background"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <ImageButton
+            android:id="@+id/ibPicture"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/picture"
+            android:src="@drawable/ic_picture" />
+
+        <ImageButton
+            android:id="@+id/ibMap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/map"
+            android:src="@drawable/ic_map" />
+
+        <ImageButton
+            android:id="@+id/ibAudio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/audio"
+            android:src="@drawable/ic_audio" />
+
+        <ImageButton
+            android:id="@+id/ibEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/edit"
+            android:src="@drawable/ic_edit" />
+
+        <ImageButton
+            android:id="@+id/ibDelete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/delete"
+            android:src="@drawable/ic_delete" />
+    </LinearLayout>
+</LinearLayout>

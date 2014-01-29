@@ -1,0 +1,26 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/activity_margin"
+    android:orientation="vertical"
+    tools:context=".MainActivity" >
+
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:layout_marginBottom="@dimen/grid_view_notes_spacing"
+        layout="@layout/focused_note" />
+
+    <GridView
+        android:id="@+id/gvNotes"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+		android:horizontalSpacing="@dimen/grid_view_notes_spacing"
+		android:verticalSpacing="@dimen/grid_view_notes_spacing"
+        android:numColumns="2"
+        tools:listitem="@layout/grid_note" />
+</LinearLayout>
