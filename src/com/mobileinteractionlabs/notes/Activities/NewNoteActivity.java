@@ -9,11 +9,14 @@
  * COPYRIGHT MOBILE INTERACTION LAB
  *
  */
-package com.mobileinteractionlabs.notes;
+package com.mobileinteractionlabs.notes.Activities;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import com.mobileinteractionlabs.notes.DatabaseHandler;
+import com.mobileinteractionlabs.notes.Note;
+import com.mobileinteractionlabs.notes.R;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;

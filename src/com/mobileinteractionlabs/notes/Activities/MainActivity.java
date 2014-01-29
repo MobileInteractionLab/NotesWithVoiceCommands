@@ -1,5 +1,8 @@
-package com.mobileinteractionlabs.notes;
+package com.mobileinteractionlabs.notes.Activities;
 
+import com.mobileinteractionlabs.notes.DatabaseHandler;
+import com.mobileinteractionlabs.notes.NoteAdapter;
+import com.mobileinteractionlabs.notes.R;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
