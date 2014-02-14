@@ -1,7 +1,11 @@
 package com.mobileinteractionlabs.notes;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 import android.content.Context;
-import android.util.Log;
+import android.database.Cursor;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,51 +13,44 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 public class NoteAdapter extends BaseAdapter {
-	
-	private Context context;
-	
-	private final String[] nText;
-	private final String[] nDate;
-	private final String[] nColor;
-	
+	private Context mContext;
+	private Cursor mCursor;
+
 	int color=0;
 	
-	public NoteAdapter(Context context, String[] nText, String[] nDate, String[] nColor) {
-		this.context = context;
-		
-		this.nText = nText;
-		this.nDate = nDate;
-		this.nColor = nColor;
+	public NoteAdapter(Context context, Cursor cursor) {
+		mContext = context;
+		mCursor = cursor;
 	}
 	
 	@Override
 	public int getCount() {
-		return nText.length;
+		return mCursor.getCount();
 	}
 
 	@Override
-	public Object getItem(int arg0) {
+	public Object getItem(int position) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public long getItemId(int arg0) {
-		// TODO Auto-generated method stub
-		return 0;
+	public long getItemId(int position) {
+		long id = 0;
+		mCursor.moveToPosition(position);
+		id = mCursor.getLong(mCursor.getColumnIndex(NotesHandler.ID_COLUMN));
+		return id;
 	}
 
 	@Override
 	public View getView(int position, View view, ViewGroup parent) {
 		
-		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		
 		View noteView;
 		
-		Log.d("position",String.valueOf(position));
-		
 		if (view == null) {
-			noteView = new View(context);
+			noteView = new View(mContext);
 			noteView = inflater.inflate(R.layout.grid_note, null);
 		}
 		else {
@@ -64,59 +61,23 @@ public class NoteAdapter extends BaseAdapter {
 		TextView noteDate = (TextView) noteView.findViewById(R.id.tvGridNoteDate);
 		View highlight = (View) noteView.findViewById(R.id.vGridNoteBackground);
 		
-		noteText.setText(nText[position]);
-		noteDate.setText(nDate[position]);
+		mCursor.moveToPosition(position);
+		noteText.setText(mCursor.getString(mCursor.getColumnIndex(NotesHandler.TEXT_COLUMN)));
 		
-		color = Integer.valueOf(nColor[position]);
+
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+		SimpleDateFormat sdf2 = new SimpleDateFormat("MMM dd", Locale.getDefault());
 		
-		highlight.setBackgroundColor(getColors(color));
+		Date d;
+		try {
+			d = sdf.parse(mCursor.getString(mCursor.getColumnIndex(NotesHandler.TIMESTAMP_COLUMN)));
+			noteDate.setText(sdf2.format(d));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+
+		highlight.setBackgroundColor(0x0C0);
+
 		return noteView;
 	}
-
-	/**
-	 * @param color2
-	 * @return
-	 */
-	private int getColors(int color2) {
-		// TODO Auto-generated method stub
-		int rColor=0;
-		switch (color) {
-		case 1:
-			rColor=context.getResources().getColor(
-					R.color.blue);
-			
-			break;
-		case 2:
-			rColor=context.getResources().getColor(
-					R.color.green);
-			
-			break;
-		case 3:
-			rColor=context.getResources().getColor(
-					R.color.orange);
-			
-			break;
-		case 4:
-			rColor=context.getResources().getColor(
-					R.color.pink);
-			
-			break;
-		case 5:
-			rColor=context.getResources().getColor(
-					R.color.purple);
-			
-			break;
-		case 6:
-			rColor=context.getResources().getColor(
-					R.color.red);
-			
-			break;
-		case 7:
-			rColor=context.getResources().getColor(
-					R.color.sky);
-			
-			break;
-		}
-		return rColor;
-	}	
 }

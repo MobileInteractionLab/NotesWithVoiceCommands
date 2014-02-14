@@ -58,78 +58,78 @@ public final class R {
         public static final int ic_picture=0x7f02000f;
     }
     public static final class id {
-        public static final int LinearLayout1=0x7f0a0010;
+        public static final int LinearLayout1=0x7f0a0007;
         public static final int action_about=0x7f0a001b;
-        public static final int action_help=0x7f0a001a;
-        public static final int action_new=0x7f0a0017;
-        public static final int action_save=0x7f0a001c;
-        public static final int action_search=0x7f0a0018;
-        public static final int action_settings=0x7f0a0019;
-        public static final int drawer_layout=0x7f0a0000;
-        public static final int etNewNoteData=0x7f0a0012;
-        public static final int gvNotes=0x7f0a0002;
-        public static final int ibAudio=0x7f0a000a;
-        public static final int ibCamera=0x7f0a0015;
-        public static final int ibChooser=0x7f0a0016;
-        public static final int ibDelete=0x7f0a000c;
-        public static final int ibEdit=0x7f0a000b;
-        public static final int ibMap=0x7f0a0009;
-        public static final int ibMic=0x7f0a0014;
-        public static final int ibPicture=0x7f0a0008;
-        public static final int left_drawer=0x7f0a0001;
-        public static final int llNewNoteColor=0x7f0a0013;
-        public static final int scrollView1=0x7f0a0005;
-        public static final int seekBar1=0x7f0a0007;
-        public static final int textView1=0x7f0a0003;
-        public static final int tvFocusedDate=0x7f0a0004;
-        public static final int tvFocusedNote=0x7f0a0006;
-        public static final int tvGridNoteDate=0x7f0a000e;
-        public static final int tvGridNoteNote=0x7f0a000d;
-        public static final int tvNewNoteDate=0x7f0a0011;
-        public static final int vGridNoteBackground=0x7f0a000f;
+        public static final int action_delete=0x7f0a0016;
+        public static final int action_help=0x7f0a0017;
+        public static final int action_new=0x7f0a0018;
+        public static final int action_save=0x7f0a0015;
+        public static final int action_search=0x7f0a0019;
+        public static final int action_settings=0x7f0a001a;
+        public static final int etNewNoteData=0x7f0a0001;
+        public static final int gvNotes=0x7f0a0008;
+        public static final int ibAudio=0x7f0a000f;
+        public static final int ibCamera=0x7f0a0004;
+        public static final int ibChooser=0x7f0a0006;
+        public static final int ibDelete=0x7f0a0011;
+        public static final int ibEdit=0x7f0a0010;
+        public static final int ibMap=0x7f0a0005;
+        public static final int ibMic=0x7f0a0003;
+        public static final int ibPicture=0x7f0a000e;
+        public static final int llNewNoteColor=0x7f0a0002;
+        public static final int scrollView1=0x7f0a000b;
+        public static final int seekBar1=0x7f0a000d;
+        public static final int textView1=0x7f0a0009;
+        public static final int tvFocusedDate=0x7f0a000a;
+        public static final int tvFocusedNote=0x7f0a000c;
+        public static final int tvGridNoteDate=0x7f0a0013;
+        public static final int tvGridNoteNote=0x7f0a0012;
+        public static final int tvNewNoteDate=0x7f0a0000;
+        public static final int vGridNoteBackground=0x7f0a0014;
     }
     public static final class layout {
-        public static final int activity_main=0x7f030000;
-        public static final int applink_locked_screen=0x7f030001;
-        public static final int focused_note=0x7f030002;
-        public static final int grid_note=0x7f030003;
-        public static final int main_content=0x7f030004;
-        public static final int new_note=0x7f030005;
-        public static final int player_controls=0x7f030006;
+        public static final int activity_edit_note=0x7f030000;
+        public static final int activity_main=0x7f030001;
+        public static final int applink_locked_screen=0x7f030002;
+        public static final int focused_note=0x7f030003;
+        public static final int grid_note=0x7f030004;
+        public static final int player_controls=0x7f030005;
+        public static final int tab_host_example=0x7f030006;
     }
     public static final class menu {
-        public static final int main=0x7f090000;
-        public static final int new_note=0x7f090001;
+        public static final int edit_note=0x7f090000;
+        public static final int main=0x7f090001;
     }
     public static final class string {
-        public static final int NoteAdded=0x7f06000b;
-        public static final int NoteAddedError=0x7f06000c;
+        public static final int NoteAdded=0x7f06000c;
+        public static final int NoteAddedError=0x7f06000d;
         public static final int action_about=0x7f060004;
         public static final int action_cancel=0x7f060007;
+        public static final int action_delete=0x7f060009;
         public static final int action_help=0x7f060003;
         public static final int action_new=0x7f060005;
         public static final int action_save=0x7f060006;
         public static final int action_search=0x7f060008;
         public static final int action_settings=0x7f060002;
         public static final int app_name=0x7f060000;
-        public static final int audio=0x7f060010;
-        public static final int camera=0x7f06000e;
-        public static final int delete=0x7f060011;
-        public static final int drawer_close=0x7f060015;
-        public static final int drawer_open=0x7f060014;
-        public static final int edit=0x7f060013;
-        public static final int empty_string=0x7f06000a;
+        public static final int audio=0x7f060011;
+        public static final int camera=0x7f06000f;
+        public static final int delete=0x7f060012;
+        public static final int drawer_close=0x7f060016;
+        public static final int drawer_open=0x7f060015;
+        public static final int edit=0x7f060014;
+        public static final int empty_string=0x7f06000b;
         /**   Strings used for UI design 
          */
-        public static final int large_string=0x7f060016;
-        public static final int map=0x7f06000f;
-        public static final int microphone=0x7f06000d;
+        public static final int large_string=0x7f060017;
+        public static final int map=0x7f060010;
+        public static final int microphone=0x7f06000e;
         public static final int new_note_activity_title=0x7f060001;
-        public static final int new_note_hint=0x7f060009;
-        public static final int picture=0x7f060012;
-        public static final int sample_date=0x7f060019;
-        public static final int sample_date_and_time=0x7f060018;
-        public static final int sample_focused_note_text=0x7f060017;
+        public static final int new_note_hint=0x7f06000a;
+        public static final int picture=0x7f060013;
+        public static final int sample_date=0x7f06001a;
+        public static final int sample_date_and_time=0x7f060019;
+        public static final int sample_focused_note_text=0x7f060018;
     }
     public static final class style {
         /** 

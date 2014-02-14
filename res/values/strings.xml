@@ -11,6 +11,7 @@
     <string name="action_save">Save</string>
     <string name="action_cancel">Cancel</string>
     <string name="action_search">Search</string>
+    <string name="action_delete">Delete</string>
     
     <string name="new_note_hint">Type a note</string>
 	<string name="empty_string"></string>

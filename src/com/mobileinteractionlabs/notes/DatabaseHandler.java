@@ -15,81 +15,57 @@
 
 package com.mobileinteractionlabs.notes;
 
-
-
-import android.content.ContentValues;
 import android.content.Context;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class DatabaseHandler extends SQLiteOpenHelper {
-	
-	// Database Version
-	private static final int DATABASE_VERSION = 1;
-
-	// Database Name
+	private static final String TAG = "DatabaseHandler";
 	private static final String DATABASE_NAME = "notesDB";
+	private static final int DATABASE_VERSION = 4;
 
-	// data table name
-	private static final String TABLE_NOTES = "table_notes";
+	// SQL Statements to create database Tables
+	private static final String CREATE_TABLE_CATEGORY = 
+		"CREATE TABLE [CATEGORY] (" +
+		"[_id] INTEGER PRIMARY KEY AUTOINCREMENT," +
+		"[Title] TEXT NOT NULL," +
+		"[Icon] TEXT NOT NULL," +
+		"[Color] INTEGER NOT NULL);";
 		
-	
-	//Columns
-	public final static String COLUMN_ID = "_id";
-	public final static String COLUMN_POSITION = "position";
-	public final static String COLUMN_TIME = "time";
-	public final static String COLUMN_DATE = "date";
-	public final static String COLUMN_NOTE = "note";
-	public final static String COLUMN_PICTURE = "picture";
-	public final static String COLUMN_AUDIO = "audio";
-	public final static String COLUMN_LATITUDE = "latitude";
-	public final static String COLUMN_LONGITUDE = "longitude";
-	public final static String COLUMN_COLOR = "color";
-	
-		
+	private static final String CREATE_TABLE_NOTE =
+		"CREATE TABLE [NOTE] (" +
+		"[_id] INTEGER PRIMARY KEY AUTOINCREMENT," +
+		"[Timestamp] DATETIME DEFAULT CURRENT_TIMESTAMP," +
+		"[Text] TEXT," +
+		"[Category_Id]);"; //INTEGER NOT NULL CONSTRAINT [ID_CATEGORY] REFERENCES [CATEGORY]([_id])
+			
 	public DatabaseHandler(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
 	}
-	
-	
+		
 	// Creating Tables
 	@Override
 	public void onCreate(SQLiteDatabase db) {
+		Log.i(TAG,"Creating Database");
 		
-		try{
-		String DATABASE_CREATE = "CREATE TABLE " + TABLE_NOTES + " ( "
-				+ COLUMN_ID + " INTEGER PRIMARY KEY, "
-				+ COLUMN_POSITION + " INTEGER,"
-				+ COLUMN_TIME + " TEXT,"
-				+ COLUMN_DATE + " TEXT,"
-				+ COLUMN_NOTE + " TEXT," 
-				+ COLUMN_PICTURE + " TEXT,"
-				+ COLUMN_AUDIO + " TEXT,"
-				+ COLUMN_LATITUDE + " TEXT,"
-				+ COLUMN_LONGITUDE + " TEXT,"
-				+ COLUMN_COLOR + " INTEGER"
-				+")";
-	
-	
-	
-		db.execSQL(DATABASE_CREATE);
-		db.execSQL(TABLE_NOTES);   
-		
-		}catch(Exception e){
+		try {
+			db.execSQL(CREATE_TABLE_CATEGORY);
+			db.execSQL(CREATE_TABLE_NOTE);   
+		} 
+		catch(Exception e) {
 			 e.printStackTrace();
 		}
-			
+		
 	}
-
-	
 
 	// Upgrading database
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		// Drop older table if existed
-		//db.execSQL("DROP TABLE IF EXISTS " + TABLE_DATA);
-		//db.execSQL("DROP TABLE IF EXISTS " + TABLE_CREDIT);
+		db.execSQL("DROP TABLE IF EXISTS [NOTE]");
+		db.execSQL("DROP TABLE IF EXISTS [CATEGORY]");
+		
 		if (newVersion > oldVersion){
 			oldVersion++;
 			while(oldVersion <= newVersion){
@@ -100,85 +76,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 					   
 				   }
 				oldVersion++;
-			}
-			
-					
+			}			
 		}
-		
+		onCreate(db);
 	}
-	
-	//Get all notes for Main Screen
-	public Cursor getAllNotes() {
-		// TODO Auto-generated method stub
-		
-		SQLiteDatabase db = this.getReadableDatabase();
-
-	   Cursor c = db.query(true, TABLE_NOTES, new String[] { COLUMN_ID,
-			   COLUMN_POSITION, COLUMN_TIME, COLUMN_DATE,COLUMN_NOTE,COLUMN_PICTURE,
-			   COLUMN_AUDIO, COLUMN_LATITUDE,COLUMN_LONGITUDE,COLUMN_COLOR}
-	   			,null, null, null, null, COLUMN_POSITION, null);
-	   
-	   return c;
-	}
-	
-
-	//Add new note
-	public void addNote(Note note) {
-
-		SQLiteDatabase db = this.getWritableDatabase();
-
-		ContentValues values = new ContentValues();
-		values.put(COLUMN_POSITION, note.get_position()); 
-		values.put(COLUMN_TIME, note.get_time()); 
-		values.put(COLUMN_DATE, note.get_date()); 
-		values.put(COLUMN_NOTE, note.get_note()); 
-		values.put(COLUMN_PICTURE, note.get_picture()); 
-		values.put(COLUMN_AUDIO, note.get_audio()); 
-		values.put(COLUMN_LATITUDE, note.get_latitude()); 
-		values.put(COLUMN_LONGITUDE, note.get_longitude()); 
-		values.put(COLUMN_COLOR, note.get_color()); 
-
-		db.insert(TABLE_NOTES, null, values);
-		db.close(); 
-	}	
-	
-	//Delete Note
-	public boolean deleteData(String id) {
-		SQLiteDatabase db = this.getWritableDatabase();
-		return db.delete(TABLE_NOTES, COLUMN_ID + "=" + id, null) > 0;
-
-	}
-	
-	//Update Note
-	public int updateDatas(Note note) {
-
-		SQLiteDatabase db = this.getWritableDatabase();
-
-		ContentValues values = new ContentValues();
-		values.put(COLUMN_POSITION, note.get_position()); 
-		values.put(COLUMN_TIME, note.get_time()); 
-		values.put(COLUMN_DATE, note.get_date());
-		values.put(COLUMN_NOTE, note.get_note()); 
-		values.put(COLUMN_PICTURE, note.get_picture());
-		values.put(COLUMN_AUDIO, note.get_audio());
-		values.put(COLUMN_LATITUDE, note.get_latitude());
-		values.put(COLUMN_LONGITUDE, note.get_longitude());
-		values.put(COLUMN_COLOR, note.get_color());
-
-		// updating row
-		return db.update(TABLE_NOTES, values, COLUMN_ID + " = ?",
-				new String[] { String.valueOf(note.get_id()) });
-	}
-	
-	//Get last position
-	
-	public int getLastPosition() {
-		
-		SQLiteDatabase db = this.getWritableDatabase();
-		Cursor c = db.query(TABLE_NOTES, new String[] { COLUMN_ID},null,null, null, null, null);
-		return c.getCount();
-	}
-
 }
 
 

@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.mobileinteractionlabs.notes.Activities.NewNoteActivity"
+            android:name="com.mobileinteractionlabs.notes.Activities.EditNoteActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateVisible|adjustResize" >
