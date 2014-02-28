@@ -1,11 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="red">#5F5050</color>
-    <color name="pink">#FF00DE</color>
-    <color name="blue">#2600FF</color>
-    <color name="green">#00FF66</color>
-    <color name="yellow">#F3FF00</color>
-    <color name="orange">#FFC000</color>
-    <color name="purple">#8400FF</color>
-    <color name="sky">#00DEFF</color>
+    <!-- Main application background color -->
+    <color name="background_light">#bcbcbc</color>
+    
+    <!-- Gridview colors -->
+
+    <!-- Gridview normal item colors -->
+    <color name="background_gridview_item_light">#bcbcbc</color>
+    <color name="gridview_item_text_light">#000000</color>
+    <color name="gridview_item_date_light">#626464</color>
+    <color name="gridview_item_highlight">#ffffff</color>
+
+    <!-- Gridview important item colors -->
+    <color name="background_gridview_important_item_light">#3f403f</color>
+    <color name="gridview_important_item_text_light">#ffffff</color>
+    <color name="gridview_important_item_date_light">#f7901e</color>
+	
+	
+	<!-- Note colors -->
+
+	<color name="background_note_light">#ffffff</color>   
+	<color name="background_buttons">#f7901e</color>
+	
 </resources>

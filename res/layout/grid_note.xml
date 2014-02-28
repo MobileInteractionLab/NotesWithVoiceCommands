@@ -1,35 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/llGridNote"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/bk_note"
+    android:layout_height="match_parent"
     android:orientation="vertical" >
 
     <TextView
         android:id="@+id/tvGridNoteNote"
         android:layout_width="match_parent"
-        android:layout_height="161dp"
+        android:layout_height="wrap_content"
         android:gravity="center_vertical"
-        android:paddingBottom="@dimen/note_margin"
         android:paddingLeft="@dimen/note_margin"
         android:paddingRight="@dimen/note_margin"
         android:paddingTop="@dimen/note_margin"
         android:text="@string/sample_focused_note_text"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:textColor="@color/gridview_item_text_light"
+        android:textSize="32sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/tvGridNoteDate"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
+        android:paddingBottom="@dimen/note_margin"
         android:paddingLeft="@dimen/note_margin"
         android:paddingRight="@dimen/note_margin"
         android:paddingTop="@dimen/note_margin"
         android:text="@string/sample_date"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+        android:textColor="@color/gridview_item_date_light"
+        android:textSize="16sp"
+        android:textStyle="bold" />
 
     <View
         android:id="@+id/vGridNoteBackground"
         android:layout_width="match_parent"
-        android:layout_height="5dp"
-        android:background="@color/sample_note_highlight" />
+        android:layout_height="2dp"
+        android:background="@color/gridview_item_highlight" />
 </LinearLayout>

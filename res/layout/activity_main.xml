@@ -3,8 +3,9 @@
     android:id="@+id/LinearLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="@dimen/activity_margin"
     android:orientation="vertical"
+    android:background="@drawable/background"
+    android:padding="0dp"
     tools:context=".MainActivity" >
 
     <GridView
@@ -12,9 +13,45 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="2"
-        android:horizontalSpacing="@dimen/grid_view_notes_spacing"
-        android:numColumns="auto_fit"
-        android:verticalSpacing="@dimen/grid_view_notes_spacing"
+        android:numColumns="2"
         tools:listitem="@layout/grid_note" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:background="#ffffff"
+        android:gravity="bottom|right">
+
+        <ImageButton
+            android:id="@+id/imageButton1"
+            android:layout_width="48dp"
+            android:layout_height="45dp"
+            android:layout_marginRight="7dp"
+            android:src="@drawable/btn_padlock"
+            android:scaleType="centerInside"
+            android:background="@drawable/bk_tab_inactive"
+            android:contentDescription="@string/padlock" />
+
+        <ImageButton
+            android:id="@+id/imageButton2"
+            android:layout_width="48dp"
+            android:layout_height="45dp"
+            android:layout_marginRight="7dp"
+            android:src="@drawable/btn_steering_wheel"
+            android:scaleType="centerInside"
+            android:background="@drawable/bk_tab_active"
+            android:contentDescription="@string/swheel" />
+
+        <ImageButton
+            android:id="@+id/imageButton3"
+            android:layout_width="48dp"
+            android:layout_height="45dp"
+            android:layout_marginRight="7dp"
+            android:src="@drawable/btn_bulb"
+            android:scaleType="centerInside"
+            android:background="@drawable/bk_tab_inactive"
+            android:contentDescription="@string/bulb" />
+
+    </LinearLayout>
 
 </LinearLayout>

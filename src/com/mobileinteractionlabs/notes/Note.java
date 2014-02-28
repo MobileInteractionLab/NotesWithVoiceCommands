@@ -9,34 +9,27 @@ public class Note {
 	
 	private long mId;
 	private String mDate;
+	private String mTitle;
 	private String mTimestamp;
 	private String mText;
 	private long mCategoryId;
 	private int mPosition;
 	private Context mContext;
 
-	public Note(Context context, String text) {
+	public Note(Context context, String title, String text) {
 		mContext = context;
 		mId = 0;
+		mTitle = title;
 		mText = text;
 	}
 	
-	public Note(Context context, long id, String timestamp, String text, long categoryId) {
+	public Note(Context context, long id, String timestamp, String title,  String text, long categoryId) {
 		mContext = context;
 		mId = id;
 		mTimestamp = timestamp;
 		mText = text;
+		mTitle = title;
 		mCategoryId = categoryId;
-	}
-	
-	public Note(int _position, String _time, String _date, String _note,
-			String _picture, String _audio, String _latitude,
-			String _longitude, int _color) {
-		super();
-		this.mPosition = _position;
-		this.mTimestamp = _time;
-		this.mDate = _date;
-		this.mText = _note;
 	}
 	
 	public long getId() {
@@ -49,6 +42,10 @@ public class Note {
 	
 	public String getDate() {
 		return mDate;
+	}
+	
+	public String getTitle() {
+		return mTitle;
 	}
 	
 	public String getTime() {
@@ -81,6 +78,10 @@ public class Note {
 		mTimestamp = timestamp;
 	}
 	
+	public void setTitle(String title) {
+		mTitle = title;
+	}
+	
 	public void setText(String text) {
 		mText = text;
 	}
@@ -89,17 +90,18 @@ public class Note {
 		mPosition = position;
 	}
 	
-	public void save() {
+	public long save() {
 		NotesHandler nh = new NotesHandler(mContext);
 		
 		if (mId == 0) {
-			nh.insert(this);
+			mId = nh.insert(this);
 		}
 		else {
 			Log.d(TAG, "Updating note");
 			nh.update(this);
 		}
 		nh.close();
+		return mId;
 	}
 	
 	public void delete() {

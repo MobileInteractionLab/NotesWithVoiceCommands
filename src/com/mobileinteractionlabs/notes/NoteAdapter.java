@@ -6,13 +6,20 @@ import java.util.Date;
 import java.util.Locale;
 import android.content.Context;
 import android.database.Cursor;
+import android.util.DisplayMetrics;
+import android.util.Log;
+import android.view.Display;
 import android.view.LayoutInflater;
+import android.widget.LinearLayout.LayoutParams;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.BaseAdapter;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class NoteAdapter extends BaseAdapter {
+	private static final String TAG = "NoteAdapter";
 	private Context mContext;
 	private Cursor mCursor;
 
@@ -52,6 +59,17 @@ public class NoteAdapter extends BaseAdapter {
 		if (view == null) {
 			noteView = new View(mContext);
 			noteView = inflater.inflate(R.layout.grid_note, null);
+			
+			WindowManager wm = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
+			Display display = wm.getDefaultDisplay();
+			DisplayMetrics dm = new DisplayMetrics();
+			display.getMetrics(dm);
+			
+			int size = (int) dm.widthPixels/2;
+			
+			TextView ll = (TextView) noteView.findViewById(R.id.tvGridNoteNote);
+			ll.setLayoutParams(new LayoutParams(size,size));
+			
 		}
 		else {
 			noteView = (View) view;
@@ -66,18 +84,15 @@ public class NoteAdapter extends BaseAdapter {
 		
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
-		SimpleDateFormat sdf2 = new SimpleDateFormat("MMM dd", Locale.getDefault());
+		SimpleDateFormat sdf2 = new SimpleDateFormat("MM/dd/yyyy", Locale.getDefault());
 		
 		Date d;
 		try {
-			d = sdf.parse(mCursor.getString(mCursor.getColumnIndex(NotesHandler.TIMESTAMP_COLUMN)));
+			d = sdf.parse(mCursor.getString(mCursor.getColumnIndex(NotesHandler.TIMESTAMP_COLUMN)));	
 			noteDate.setText(sdf2.format(d));
 		} catch (ParseException e) {
 			e.printStackTrace();
-		}
-
-		highlight.setBackgroundColor(0x0C0);
-
+		}		
 		return noteView;
 	}
 }

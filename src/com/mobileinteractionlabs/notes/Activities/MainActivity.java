@@ -1,3 +1,6 @@
+/**
+ * 
+ */
 package com.mobileinteractionlabs.notes.Activities;
 
 import com.mobileinteractionlabs.notes.Note;
@@ -27,7 +30,13 @@ public class MainActivity extends Activity implements OnItemClickListener {
 		setContentView(R.layout.activity_main);
 		mGridView = (GridView) findViewById(R.id.gvNotes);
 	}
-
+	
+	@Override
+	protected void onResume() {
+		super.onResume();
+		populateGridView();
+	}
+	
 	private void populateGridView() {
 		NotesHandler nh = new NotesHandler(this);
 		Cursor cursor = nh.getAllNotes();
@@ -37,18 +46,17 @@ public class MainActivity extends Activity implements OnItemClickListener {
 		nh.close();
 	}
 	
+	@Override
+	public void onItemClick(AdapterView<?> arg0, View view, int position, long rowId) {
+		editNote(mNoteAdapter.getItemId(position));		
+	}
+	
 	public void editNote(Long id) {
 		Intent intent = new Intent(MainActivity.this, EditNoteActivity.class);
 		intent.putExtra(Note.EDIT_EXTRA, id);
 		startActivity(intent);
 	}
 	
-	@Override
-	protected void onResume() {
-		super.onResume();
-		populateGridView();
-	}
-
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -71,11 +79,5 @@ public class MainActivity extends Activity implements OnItemClickListener {
 			default:
 				return false;
 		}
-	}
-
-	
-	@Override
-	public void onItemClick(AdapterView<?> arg0, View view, int position, long rowId) {
-		editNote(mNoteAdapter.getItemId(position));		
 	}
 }
