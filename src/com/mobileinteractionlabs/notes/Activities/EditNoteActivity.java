@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
 
+import com.mobileinteractionlabs.notes.Category;
 import com.mobileinteractionlabs.notes.Note;
 import com.mobileinteractionlabs.notes.NotesHandler;
 import com.mobileinteractionlabs.notes.Picture;
@@ -26,6 +27,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -35,7 +37,7 @@ import android.widget.TextView;
  * @author mobile interaction lab
  *
  */
-public class EditNoteActivity extends Activity implements OnClickListener {
+public class EditNoteActivity extends Activity implements OnClickListener, OnLongClickListener {
 	private static final String TAG = "EditNoteActivity";
 	public static final int MEDIA_TYPE_IMAGE = 1;
 	private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
@@ -45,10 +47,15 @@ public class EditNoteActivity extends Activity implements OnClickListener {
 	private EditText mNoteText;
 	private ImageButton mMic;
 	private ImageButton mCamera;
+	private ImageButton mCategory;
+	private ImageButton mCategory1;
+	private ImageButton mCategory2;
+	private ImageButton mPicture;
 	private String mTitle = "";
 	private String mText = "";
 	private Long mNoteId;
 	private Note mNote = null;
+	private long mCategoryId = Category.SWHEEL;
 	
 	private Picture picture;
 	private Uri fileUri;
@@ -67,11 +74,24 @@ public class EditNoteActivity extends Activity implements OnClickListener {
 		mNoteDate = (TextView) findViewById(R.id.tvNoteDate);
 		mNoteTitle = (EditText) findViewById(R.id.evNoteTitle);
 		mNoteText = (EditText) findViewById(R.id.etNoteText);
+		
+		//Buttons
 		mMic = (ImageButton) findViewById(R.id.ibMic);
 		mCamera = (ImageButton) findViewById(R.id.ibCamera);
+		mPicture = (ImageButton) findViewById(R.id.ibPicture);
+		mCategory = (ImageButton) findViewById(R.id.ibCategory);
+		mCategory1 = (ImageButton) findViewById(R.id.ibCategory1);
+		mCategory2 = (ImageButton) findViewById(R.id.ibCategory2);
 		
+		
+		//Listeners
 		mMic.setOnClickListener(this);
 		mCamera.setOnClickListener(this);
+		mPicture.setOnClickListener(this);
+		mCategory.setOnClickListener(this);
+		mCategory1.setOnClickListener(this);
+		mCategory2.setOnClickListener(this);
+		mCategory1.setOnLongClickListener(this);
 		
 		Intent intent =  getIntent();
 		mNoteId = intent.getLongExtra(Note.EDIT_EXTRA, 0);
@@ -85,6 +105,18 @@ public class EditNoteActivity extends Activity implements OnClickListener {
 		}
 	}
 
+	@Override
+	protected void onResume() {
+		super.onResume();
+		if (picture != null) {
+			mCamera.setBackgroundResource(R.drawable.bk_options);
+			mCamera.setOnLongClickListener(this);
+		} else {
+			mCamera.setBackgroundResource(R.color.background_buttons);
+		}
+		mCamera.invalidate();
+	}
+	
 	private void populateNote() {
 		NotesHandler nh = new NotesHandler(this);
 		mNote = nh.getNoteById(mNoteId);
@@ -93,19 +125,11 @@ public class EditNoteActivity extends Activity implements OnClickListener {
 		mNoteDate.setText(mNote.getTimesamp());
 		mNoteTitle.setText(mNote.getTitle());
 		mNoteText.append(mNote.getText());
+		mCategoryId = mNote.getCategoryId();
 		
 		PicturesHandler ph = new PicturesHandler(this);
 		picture = ph.getPictureByNoteId(mNoteId);
 		ph.close();
-		
-		if (picture != null) {
-			mCamera.setImageResource(R.drawable.btn_picture_normal);
-			mCamera.setId(R.id.ibPicture);
-		} else {
-			mCamera.setImageResource(R.drawable.btn_camera_normal);
-			mCamera.setId(R.id.ibCamera);
-		}
-		mCamera.invalidate();
 	}
 	
 	private void saveNote() {
@@ -113,26 +137,25 @@ public class EditNoteActivity extends Activity implements OnClickListener {
 		mText = mNoteText.getText().toString();
 		
 		// Check if Edit text Note have text
-		if (mText.length() > 0) {
-			try {
-				if (mNote == null) {
-					mNote = new Note(this, mTitle, mText);
-				} else {
-					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
-					sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
-					mNote.setTimestamp(sdf.format(new Date()));
-					mNote.setText(mText);
-				}
-				long noteId = mNote.save();
-				picture.setNoteId(noteId);
-				picture.save();
-				
-				returnIntent(RESULT_OK);
-			} catch (Exception e) {
-						returnIntent(RESULT_CANCELED);
+		try {
+			if (mNote == null) {
+				mNote = new Note(this, mTitle, mText, mCategoryId);
+			} 
+			else {
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+				sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
+				mNote.setTimestamp(sdf.format(new Date()));
+				mNote.setTitle(mTitle);
+				mNote.setText(mText);
+				mNote.setCategoryId(mCategoryId);
 			}
-		} else {
-			returnIntent(RESULT_CANCELED);
+			
+			long noteId = mNote.save();
+			picture.setNoteId(noteId);
+			picture.save();
+			returnIntent(RESULT_OK);
+		} catch (Exception e) {
+					returnIntent(RESULT_CANCELED);
 		}
 	}
 
@@ -140,6 +163,8 @@ public class EditNoteActivity extends Activity implements OnClickListener {
 		if (mNote != null) {
 			mNote.delete();
 			returnIntent(RESULT_OK);
+		} else {
+			returnIntent(RESULT_CANCELED);
 		}
 	}
 	
@@ -159,6 +184,7 @@ public class EditNoteActivity extends Activity implements OnClickListener {
 	}
 	
 	private void displayPicture() {
+		mPicture.setVisibility(View.INVISIBLE);
 		Uri uri = Uri.parse(picture.getAbsolutePath());
 		Intent intent = new Intent(Intent.ACTION_VIEW);
 		intent.setDataAndType(uri, "image/*");
@@ -196,11 +222,51 @@ public class EditNoteActivity extends Activity implements OnClickListener {
 			break;
 		case R.id.ibPicture:
 			displayPicture();
+			break;
+		case R.id.ibCategory:
+			mCategoryId = Category.PADLOCK;
+			hideCategoryMenu();
+			break;
+		case R.id.ibCategory1:
+			mCategoryId = Category.SWHEEL;
+			hideCategoryMenu();
+			break;
+		case R.id.ibCategory2:
+			mCategoryId = Category.BULB;
+			hideCategoryMenu();
+			break;
 		default:
 			break;
 		}
 	}
 	
+	@Override
+	public boolean onLongClick(View view) {
+		switch(view.getId()) {
+		case R.id.ibCamera:
+			displayCameraMenu();
+			break;
+		case R.id.ibCategory1:
+			displayCategoryMenu();
+		default:
+			break;
+		}
+		return true;
+	}
+	
+	private void displayCameraMenu() {
+		mPicture.setVisibility(View.VISIBLE);
+	}
+	
+	private void displayCategoryMenu() {
+		mCategory.setVisibility(View.VISIBLE);
+		mCategory2.setVisibility(View.VISIBLE);
+	}
+
+	private void hideCategoryMenu() {
+		mCategory.setVisibility(View.INVISIBLE);
+		mCategory2.setVisibility(View.INVISIBLE);
+	}
 	/** Create a file Uri for saving an image or video */
 	private static Uri getOutputMediaFileUri(int type){
 	      return Uri.fromFile(getOutputMediaFile(type));

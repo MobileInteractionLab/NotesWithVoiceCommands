@@ -3,6 +3,7 @@
  */
 package com.mobileinteractionlabs.notes.Activities;
 
+import com.mobileinteractionlabs.notes.Category;
 import com.mobileinteractionlabs.notes.Note;
 import com.mobileinteractionlabs.notes.NoteAdapter;
 import com.mobileinteractionlabs.notes.NotesHandler;
@@ -15,31 +16,48 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
+import android.widget.ImageButton;
 
-public class MainActivity extends Activity implements OnItemClickListener {
+public class MainActivity extends Activity implements OnItemClickListener, OnClickListener {
 	private static final String TAG = "MainActivity";
 	private GridView mGridView;
+	private ImageButton mPadlock;
+	private ImageButton mSwheel;
+	private ImageButton mBulb;
 	private NoteAdapter mNoteAdapter;
+	private long mCurrentCategory = Category.SWHEEL;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
 		setContentView(R.layout.activity_main);
+		
 		mGridView = (GridView) findViewById(R.id.gvNotes);
+		
+		//Category Selector Buttons
+		mPadlock = (ImageButton) findViewById(R.id.ibPadlock);
+		mSwheel = (ImageButton) findViewById(R.id.ibSWheel);
+		mBulb = (ImageButton) findViewById(R.id.ibBulb);
+		
+		mPadlock.setOnClickListener(this);
+		mSwheel.setOnClickListener(this);
+		mBulb.setOnClickListener(this);
 	}
 	
 	@Override
 	protected void onResume() {
 		super.onResume();
-		populateGridView();
+		populateGridView(mCurrentCategory);
 	}
 	
-	private void populateGridView() {
+	private void populateGridView(long category) {
 		NotesHandler nh = new NotesHandler(this);
-		Cursor cursor = nh.getAllNotes();
+		Cursor cursor = nh.getAllNotesByCategoryId(category);
 		mNoteAdapter = new NoteAdapter(this, cursor);
 		mGridView.setAdapter(mNoteAdapter);
 		mGridView.setOnItemClickListener(this);
@@ -79,5 +97,32 @@ public class MainActivity extends Activity implements OnItemClickListener {
 			default:
 				return false;
 		}
+	}
+
+	@Override
+	public void onClick(View view) {
+		switch (view.getId()) {
+		case R.id.ibPadlock:
+			mCurrentCategory = Category.PADLOCK;
+			mPadlock.setBackgroundResource(R.drawable.bk_tab_active);
+			mSwheel.setBackgroundResource(R.drawable.bk_tab_inactive);
+			mBulb.setBackgroundResource(R.drawable.bk_tab_inactive);			
+			break;
+		case R.id.ibSWheel:
+			mCurrentCategory = Category.SWHEEL;
+			mPadlock.setBackgroundResource(R.drawable.bk_tab_inactive);
+			mSwheel.setBackgroundResource(R.drawable.bk_tab_active);
+			mBulb.setBackgroundResource(R.drawable.bk_tab_inactive);	
+			break;
+		case R.id.ibBulb:
+			mCurrentCategory = Category.BULB;
+			mPadlock.setBackgroundResource(R.drawable.bk_tab_inactive);
+			mSwheel.setBackgroundResource(R.drawable.bk_tab_inactive);
+			mBulb.setBackgroundResource(R.drawable.bk_tab_active);	
+			break;
+		default:
+			mCurrentCategory = Category.SWHEEL;
+		}
+		populateGridView(mCurrentCategory);
 	}
 }

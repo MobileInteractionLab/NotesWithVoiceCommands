@@ -44,6 +44,15 @@ public class NotesHandler {
 	   return c;
 	}
 	
+	public Cursor getAllNotesByCategoryId(long categoryId) {
+		Cursor c = mDb.rawQuery(
+				"SELECT n._id, datetime(n.Timestamp,'localtime') AS Timestamp, n.Title, n.Text, n.Category_Id " +
+				"FROM NOTE AS n " +
+				"WHERE n.Category_Id = " + categoryId +
+				" ORDER BY Timestamp DESC", null);
+	   return c;
+	}
+	
 	public Note getNoteById(Long id) {
 		long mId = 0;
 		String mTimestamp = "";

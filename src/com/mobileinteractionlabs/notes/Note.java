@@ -16,11 +16,12 @@ public class Note {
 	private int mPosition;
 	private Context mContext;
 
-	public Note(Context context, String title, String text) {
+	public Note(Context context, String title, String text, long categoryId) {
 		mContext = context;
 		mId = 0;
 		mTitle = title;
 		mText = text;
+		mCategoryId = categoryId;
 	}
 	
 	public Note(Context context, long id, String timestamp, String title,  String text, long categoryId) {
@@ -85,9 +86,9 @@ public class Note {
 	public void setText(String text) {
 		mText = text;
 	}
-	
-	public void setPosition(int position) {
-		mPosition = position;
+
+	public void setCategoryId(long id) {
+		mCategoryId = id;
 	}
 	
 	public long save() {

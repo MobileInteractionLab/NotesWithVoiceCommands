@@ -1,6 +1,9 @@
 package com.mobileinteractionlabs.notes;
 
 public class Category {
+	public static final long PADLOCK = 0;
+	public static final long SWHEEL = 1;
+	public static final long BULB = 2;
 
 	private int mId;
 	private String mTitle;

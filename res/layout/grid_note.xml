@@ -2,26 +2,46 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/llGridNote"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical" >
 
     <TextView
+        android:id="@+id/tvGridNoteTitle"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:paddingLeft="@dimen/note_margin"
+        android:paddingRight="@dimen/note_margin"
+        android:paddingTop="@dimen/note_margin"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:text="@string/sample_note_title"
+        android:textColor="@color/gridview_item_text_light"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+        
+    <TextView
         android:id="@+id/tvGridNoteNote"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="2"
         android:gravity="center_vertical"
         android:paddingLeft="@dimen/note_margin"
         android:paddingRight="@dimen/note_margin"
         android:paddingTop="@dimen/note_margin"
+        android:maxLines="3"
+        android:ellipsize="end"
         android:text="@string/sample_focused_note_text"
         android:textColor="@color/gridview_item_text_light"
-        android:textSize="32sp"
-        android:textStyle="bold" />
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/tvGridNoteDate"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
         android:paddingBottom="@dimen/note_margin"
         android:paddingLeft="@dimen/note_margin"
         android:paddingRight="@dimen/note_margin"

@@ -69,7 +69,7 @@ public final class R {
         public static final int btn_padlock_disabled=0x7f020012;
         public static final int btn_padlock_normal=0x7f020013;
         public static final int btn_picture_normal=0x7f020014;
-        public static final int btn_steering_wheel=0x7f020015;
+        public static final int btn_swheel=0x7f020015;
         public static final int btn_swheel_disabled=0x7f020016;
         public static final int btn_swheel_normal=0x7f020017;
         public static final int ic_action_accept=0x7f020018;
@@ -81,35 +81,38 @@ public final class R {
         public static final int ic_launcher=0x7f02001e;
     }
     public static final class id {
-        public static final int LinearLayout1=0x7f0a000a;
-        public static final int action_about=0x7f0a001c;
-        public static final int action_delete=0x7f0a0017;
-        public static final int action_help=0x7f0a0018;
-        public static final int action_new=0x7f0a0019;
-        public static final int action_save=0x7f0a0016;
-        public static final int action_search=0x7f0a001a;
-        public static final int action_settings=0x7f0a001b;
-        public static final int etNoteText=0x7f0a0002;
-        public static final int evNoteTitle=0x7f0a0001;
-        public static final int gvNotes=0x7f0a000b;
-        public static final int ibCamera=0x7f0a0005;
-        public static final int ibCategory=0x7f0a0007;
-        public static final int ibDelete=0x7f0a0015;
-        public static final int ibFlag=0x7f0a0008;
-        public static final int ibMap=0x7f0a0006;
-        public static final int ibMic=0x7f0a0004;
-        public static final int ibPicture=0x7f0a0009;
-        public static final int imageButton1=0x7f0a000c;
-        public static final int imageButton2=0x7f0a000d;
-        public static final int imageButton3=0x7f0a000e;
-        public static final int llGridNote=0x7f0a0010;
-        public static final int llNoteButtons=0x7f0a0003;
-        public static final int seekBar1=0x7f0a0014;
-        public static final int textView1=0x7f0a000f;
-        public static final int tvGridNoteDate=0x7f0a0012;
-        public static final int tvGridNoteNote=0x7f0a0011;
-        public static final int tvNoteDate=0x7f0a0000;
-        public static final int vGridNoteBackground=0x7f0a0013;
+        public static final int LinearLayout1=0x7f0a000c;
+        public static final int RelativeLayout1=0x7f0a0000;
+        public static final int action_about=0x7f0a001f;
+        public static final int action_delete=0x7f0a001a;
+        public static final int action_help=0x7f0a001b;
+        public static final int action_new=0x7f0a001c;
+        public static final int action_save=0x7f0a0019;
+        public static final int action_search=0x7f0a001d;
+        public static final int action_settings=0x7f0a001e;
+        public static final int etNoteText=0x7f0a0004;
+        public static final int evNoteTitle=0x7f0a0003;
+        public static final int gvNotes=0x7f0a000d;
+        public static final int ibBulb=0x7f0a0010;
+        public static final int ibCamera=0x7f0a0006;
+        public static final int ibCategory=0x7f0a000a;
+        public static final int ibCategory1=0x7f0a0008;
+        public static final int ibCategory2=0x7f0a000b;
+        public static final int ibDelete=0x7f0a0018;
+        public static final int ibFlag=0x7f0a0009;
+        public static final int ibMap=0x7f0a0007;
+        public static final int ibMic=0x7f0a0005;
+        public static final int ibPadlock=0x7f0a000e;
+        public static final int ibPicture=0x7f0a0001;
+        public static final int ibSWheel=0x7f0a000f;
+        public static final int llGridNote=0x7f0a0012;
+        public static final int seekBar1=0x7f0a0017;
+        public static final int textView1=0x7f0a0011;
+        public static final int tvGridNoteDate=0x7f0a0015;
+        public static final int tvGridNoteNote=0x7f0a0014;
+        public static final int tvGridNoteTitle=0x7f0a0013;
+        public static final int tvNoteDate=0x7f0a0002;
+        public static final int vGridNoteBackground=0x7f0a0016;
     }
     public static final class layout {
         public static final int activity_edit_note=0x7f030000;
@@ -135,13 +138,14 @@ public final class R {
         public static final int audio=0x7f060011;
         public static final int bulb=0x7f060017;
         public static final int camera=0x7f06000f;
+        public static final int category=0x7f060018;
         public static final int delete=0x7f060012;
         public static final int edit=0x7f060014;
         public static final int edit_note_activity_title=0x7f060002;
         public static final int empty_string=0x7f06000d;
         /**   Strings used for UI design 
          */
-        public static final int large_string=0x7f060018;
+        public static final int large_string=0x7f060019;
         public static final int map=0x7f060010;
         public static final int microphone=0x7f06000e;
         public static final int new_note_activity_title=0x7f060001;
@@ -149,9 +153,10 @@ public final class R {
         public static final int new_note_title_hint=0x7f06000b;
         public static final int padlock=0x7f060015;
         public static final int picture=0x7f060013;
-        public static final int sample_date=0x7f06001b;
-        public static final int sample_date_and_time=0x7f06001a;
-        public static final int sample_focused_note_text=0x7f060019;
+        public static final int sample_date=0x7f06001d;
+        public static final int sample_date_and_time=0x7f06001c;
+        public static final int sample_focused_note_text=0x7f06001b;
+        public static final int sample_note_title=0x7f06001a;
         public static final int swheel=0x7f060016;
     }
     public static final class style {

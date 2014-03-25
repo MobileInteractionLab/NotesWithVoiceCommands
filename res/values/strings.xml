@@ -29,9 +29,11 @@
 	<string name="padlock">Padlock</string>
 	<string name="swheel">Steering Wheel</string>
 	<string name="bulb">Bulb</string>
+	<string name="category">Category</string>
 	
 	<!--  Strings used for UI design -->
 	<string name="large_string">Laaaaaaaaaaargeeeee Striiiiiiiiiing</string>
+	<string name="sample_note_title">Lunch Places</string>
     <string name="sample_focused_note_text">that place looks good for lunch</string>
 	<string name="sample_date_and_time">11:43 am 01/10/2014</string>
 	<string name="sample_date">01/10/2014</string>

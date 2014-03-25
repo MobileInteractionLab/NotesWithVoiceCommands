@@ -10,7 +10,7 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
-import android.widget.LinearLayout.LayoutParams;
+import android.widget.AbsListView.LayoutParams;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -51,10 +51,11 @@ public class NoteAdapter extends BaseAdapter {
 
 	@Override
 	public View getView(int position, View view, ViewGroup parent) {
-		
+				
 		LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		
 		View noteView;
+		TextView noteText;
 		
 		if (view == null) {
 			noteView = new View(mContext);
@@ -65,21 +66,23 @@ public class NoteAdapter extends BaseAdapter {
 			DisplayMetrics dm = new DisplayMetrics();
 			display.getMetrics(dm);
 			
-			int size = (int) dm.widthPixels/2;
-			
-			TextView ll = (TextView) noteView.findViewById(R.id.tvGridNoteNote);
-			ll.setLayoutParams(new LayoutParams(size,size));
-			
+			int height = (int) dm.widthPixels/2;
+			int width = (int) dm.widthPixels/2;
+			LinearLayout ll = (LinearLayout) noteView.findViewById(R.id.llGridNote);
+			ll.setLayoutParams(new LayoutParams(width,height));			
 		}
 		else {
 			noteView = (View) view;
 		}
 		
-		TextView noteText = (TextView) noteView.findViewById(R.id.tvGridNoteNote);
+		TextView noteTitle = (TextView) noteView.findViewById(R.id.tvGridNoteTitle);
 		TextView noteDate = (TextView) noteView.findViewById(R.id.tvGridNoteDate);
 		View highlight = (View) noteView.findViewById(R.id.vGridNoteBackground);
 		
 		mCursor.moveToPosition(position);
+		
+		noteTitle.setText(mCursor.getString(mCursor.getColumnIndex(NotesHandler.TITLE_COLUMN)));
+		noteText = (TextView) noteView.findViewById(R.id.tvGridNoteNote);
 		noteText.setText(mCursor.getString(mCursor.getColumnIndex(NotesHandler.TEXT_COLUMN)));
 		
 
